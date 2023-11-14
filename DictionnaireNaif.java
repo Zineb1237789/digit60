@@ -97,29 +97,6 @@ public class DictionnaireNaif {
         }
         return false;
     }
-    // public boolean contient(String m){
-    //     if (m.length()>40) {
-    //         System.out.println("le mot ne peut etre contenu dans t");
-    //         return false;
-    //     }else{
-    //         int i=0;
-    //         while(i!=N*40){
-    //             int k=i;
-    //             int lm=0;
-    //             while(lm!=m.length() && t[k]==m.charAt(lm)){
-    //                 k=k+1;
-    //                 lm=lm+1;
-    //             }
-    //             if (lm==m.length()) {
-    //                 // i=N*40;
-    //                 return true;
-    //             }else{
-    //                 i=i+40;
-    //             }
-    //         }
-    //     }
-    //     return false;
-    // }
 
         /**
      * renvoie le nombre de mots de m.
