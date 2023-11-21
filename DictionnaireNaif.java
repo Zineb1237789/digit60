@@ -99,7 +99,6 @@ public class DictionnaireNaif {
                  m = m + t[k];
                  k = k + 1;
              }
-             if()
              return m;
 
          }
