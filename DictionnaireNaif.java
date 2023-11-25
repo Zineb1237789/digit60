@@ -1,6 +1,6 @@
 package inf353;
 import java.io.*;
-
+//test
 public class DictionnaireNaif {
     public static int N = 100;
     public static char[] t;
