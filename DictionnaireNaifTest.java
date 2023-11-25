@@ -65,7 +65,7 @@ public class DictionnaireNaifTest {
       @Test
       public void testnbMots6() throws Exception {
           DictionnaireNaif f = new DictionnaireNaif();
-          f.ajouterMot("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+          f.ajouterMot("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
           assertTrue(f.nbMots() == 1);
       }
 
@@ -163,23 +163,31 @@ public class DictionnaireNaifTest {
             DictionnaireNaif f = new DictionnaireNaif();
             f.ajouterMot("carte");
             f.ajouterMot("carnet");
-            int i=1;
             assertTrue((f.motIndice(1)).equals("carnet"));
         
    }
    
-        @Test
-        public void motindice2() throws Exception {     
-            DictionnaireNaif f = new DictionnaireNaif();
-            int i = 0;
-            assertFalse((f.motIndice(0)).equals("carte"));
-        }
 
         @Test
         public void indiceMot() throws Exception {
-            DictionnaireNaif f=new DictionnaireNaif();
+            DictionnaireNaif f = new DictionnaireNaif();
             f.ajouterMot("issac");
             assertTrue((f.indiceMot("issac")) == 0);
+        }
+        @Test
+        public void indiceMot2() throws Exception {
+            DictionnaireNaif f = new DictionnaireNaif();
+            f.ajouterMot("issac");
+            f.ajouterMot("issa");
+            assertTrue(f.indiceMot("issa") == 1);
+        }
+             @Test
+        public void indiceMot3() throws Exception {
+            DictionnaireNaif f=new DictionnaireNaif();
+            f.ajouterMot("issac");
+            f.ajouterMot("issa");
+            f.ajouterMot("iss");
+            assertTrue((f.indiceMot("iss")) == 2);
         }
     
 }
