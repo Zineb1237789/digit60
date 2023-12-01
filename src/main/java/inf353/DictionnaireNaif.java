@@ -1,6 +1,7 @@
 package inf353;
-import java.io.*;
-
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 public class DictionnaireNaif {
     public static int N = 100;
     public static char[] t;
@@ -53,9 +54,9 @@ public class DictionnaireNaif {
      * @param m
      * @return
      */
-   public int indiceMot(String m){
-             int i = 0;
-             while(i != l){
+public int indiceMot(String m){
+            int i = 0;
+            while(i != l){
                 String s = motIndice(i/40);
                 if(s.length() != m.length()){
                     i = i+40;
@@ -75,8 +76,8 @@ public class DictionnaireNaif {
                 }
             }
             return -1;
-               
-     }
+        
+    }
     /**
     * renvoie le mot associé à l'entier i;
     * @param i l'indice du mot à renvoyer
@@ -149,43 +150,42 @@ public class DictionnaireNaif {
         }
         return false;
     }
-
-    public String plusLongPrefixe() {
-        if (l == 0) {
-            return "";
-        }
-        int i = 0;
-        char[] prefixe = new char[40];
-        while (i < 40) {
-            char c = t[i];
-            int j = 1;
-            while (j < N && t[i + j * 40] == c) { //C'est pour vérifier que le caractère est le même pour tous les mots
-                j = j + 1;
+    public void sauver(String monFichier) throws IOException{
+    int i =0;
+    try{
+        File file = new File(System.getProperty("user.dir")+ "\\src\\main\\java\\inf353\\ressources\\ " + monFichier+ ".txt");
+        if(file.createNewFile()){
+            FileWriter ecrire = new FileWriter(file);
+            while (i!=nbMots()) {
+                ecrire.write(motIndice(i) + " ");
+                i =  i+1;
             }
-            if (j == N) {
-                prefixe[i] = c;
-            } else {
-                break;//arrete la recherche du prefixe si ce n'est pas égal
-            }
-            i = i + 1;
+            ecrire.write("\n");
+            ecrire.close();
         }
-        return new String(prefixe); //Permet de renvoyer le tableau de caractère prefixe sous forme de string
+    }
+    catch(IOException e){
+        System.out.println("an error");
+        e.getStackTrace();
+    }
     }
 
-    public static void main(String[] args) {
+   /**  public static void main(String[] args) throws IOException{
         DictionnaireNaif d = new DictionnaireNaif();
+        DictionnaireNaif d1 = new DictionnaireNaif();
         d.ajouterMot("hello");
         d.ajouterMot("hellhdshbsjh");
         d.ajouterMot("hell");
-        System.out.println("le tableau apres le remplissage:");
-        d.display(t);
-        System.out.println();
+        d.sauver("doss");
+       // System.out.println("le tableau apres le remplissage:");
+        //d.display(t);
+       // System.out.println();
         // System.out.println(d.t);
         // System.out.println(d.t[40]);
         // System.out.println(d.l);
-        System.out.println(d.indiceMot("hello"));
-        System.out.println();
-        System.out.println(d.indiceMot("hell"));
+        //System.out.println(d.indiceMot("hello"));
+       // System.out.println();
+        //System.out.println(d.indiceMot("hell"));
         //System.out.println(d.contient("hell"));
         // d.vider();
         // System.out.println("\nle tableau apres le vidage:");
@@ -196,5 +196,6 @@ public class DictionnaireNaif {
         //System.out.println();
         //System.out.println(d.nbMots());
         // System.out.println("ca marche");
-    }
+    }*/
 }
+
