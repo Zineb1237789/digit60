@@ -1,14 +1,16 @@
 package inf353;
-import java.io.*;
+
+import java.io.InputStreamReader;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.File;
+import java.io.*;
+
 
 
 public class LecteurDocumentNaif  {
-     public String mot;
-    public BufferedReader lect;// serve a rassemblait les lignes dans le tableau
+    public String mot;
+    public BufferedReader lect;
     public int caractere;
     public char caractereLu;
     public boolean fin;
@@ -17,15 +19,16 @@ public class LecteurDocumentNaif  {
         mot = "";
         fin = false;
 
-        try{
-            FileReader fileReader = new FileReader(chemin);
-            this.lect = new BufferedReader(fileReader);
+        try {
+           
+            FileInputStream fileInputStream = new FileInputStream(chemin);
+            InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream, "UTF-8");
             
+            this.lect = new BufferedReader(inputStreamReader);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
-       
-
     }
 
    public void demarrer() throws java.io.IOException {
@@ -85,17 +88,13 @@ public class LecteurDocumentNaif  {
 
   public boolean estSeparateur(char c) {
         return (c == ' ' || c == '.' || c == '!' || c == ';' || c == '\'' || c == ':' || c == '?' || c == ','
-                || c == '"' || c == '/' || c == ')' || c == '(' || c == '[' || c == ']' || c == '{' || c == '}'|| c=='\n');
+                || c == '"' || c == '/' || c == ')' || c == '(' || c == '[' || c == ']' || c == '{' || c == '}'|| c=='\n'||c=='_'||c=='-');
     }
 
-    public void prochainEspace() {
-
+    
+    public static void main(String[] args) throws java.io.IOException {
+          LecteurDocumentNaif lecteur = new LecteurDocumentNaif("C:\\Users\\danie\\Downloads\\inf353_projet\\digit60\\src\\main\\java\\inf353\\ressources\\sample\\sample\\lemonde94\\19940111\\LEMONDE94-001098-19940111");
         
-
-    }
-    /**public static void main(String[] args) throws java.io.IOException {
-          LecteurDocumentNaif lecteur = new LecteurDocumentNaif("C:\\Users\\danie\\Downloads\\inf353_projet\\src\\main\\resources\\sample\\sample\\ats94\\ats_19940327.sgml\\ATS.940327.0002");
-          int i=0;
           lecteur.demarrer();
             while (!lecteur.finDeSequence()) {
                 System.out.print(" "+lecteur.elementCourant());
@@ -103,7 +102,7 @@ public class LecteurDocumentNaif  {
                 lecteur.avancer();
         }
 
-    }*/
+    }
    
 
 }
