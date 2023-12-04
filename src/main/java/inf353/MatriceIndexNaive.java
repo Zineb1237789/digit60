@@ -35,101 +35,63 @@ public class MatriceIndexNaive implements MatriceIndex {
 * monFichier correspond au nom du fichier matrice
 *
 */
+public int ligne;
+public int colonne;
 public MatriceIndexNaive(String monFichier) throws IOException{
-    int ligne=0;
-    int colonne=0;
+    ligne = 0;
+    colonne=0;
 try{
-    //File file = new File(System.getProperty("user.dir") + "\\src\\main\\java\\inf353\\ressources\\" + monFichier + ".txt");
-    //if(file.exists() && file.canRead()){
-        
-        File file = new File(System.getProperty("user.dir") + "\\src\\main\\java\\inf353\\ressources\\" + monFichier + ".txt");
-            FileReader lecteur = new FileReader(file);
-            BufferedReader lire = new BufferedReader(lecteur);
-            String line;
-            while ((line=lire.readLine())!=null) {
-                String[] ec = line.split(" ");
-           //parcour du fichier matrice pour recuperer les dimensions(ligne et colonne)
-                int k=0;
-                while (k!= ec.length) {
-                    k = k+1;
-                    colonne = k;
-            
-                }
-            ligne = ligne + 1;
-        }
-        lecteur.close();
-        //initialisation de la matrix avec les dimension recuperer
-        matrice = new int[ligne][colonne];
-        FileReader lecteur1 = new FileReader(file);
-        BufferedReader lire1 = new BufferedReader(lecteur1);
-        String line1;
-        int i=0;
-        while ((line1= lire1.readLine())!=null && i<ligne) {
-            String[] ec1 = line1.split(" ");
-            int j=0;
-            while (j!=ec1.length) {
-                matrice[i][j] = Integer.parseInt(ec1[j]);
-                j = j+1;
-            }
-            System.out.println();
+    //declaration des variables
+    ligne = 0;
+    colonne = 0;
+    // construction du fichier a partir du fichier source
+    File file = new File(System.getProperty("user.dir") + "\\src\\main\\java\\inf353\\ressources\\" + monFichier+ ".txt");
+    // contruction de la memoir tampon et du lecteur de fichier pour recuperer les dimension
+    BufferedReader lire = new BufferedReader(new FileReader(file));
+    //creation de memoir stocker les chaine de lignes
+    String element;
+    while ((element = lire.readLine())!= null) {
+        //creation d'un tableau pour stocker les chaines en differenciant les espaces
+        String[] chaine = element.split(" ");
+        //parcour du tableau representant les Strings d'une ligne pour avoir nb colonne
+        int i = 0;
+        while(i!=chaine.length + 1){
+            colonne = i; // incrementation de colonne
             i = i+1;
         }
-        lecteur1.close();
-        //System.out.println(matrice[i][j]);
-    }
+        ligne = ligne +1; // incrementation de ligne
         
+    }
+    // a la sortie on obtient ligne, colonne teste effectuer
+    //System.out.println(ligne);
+   // System.out.println(colonne);
+   //remplissage de la matrice
+   //construction de la matrice avec les informations ligne et colonne
+matrice = new int[ligne][colonne];
+//memoire tampon pour une noveelle lecture du fichier en remplissant la matrice
+BufferedReader lire1 = new BufferedReader(new FileReader(file));
+String ec;// string pour stocker la ligne
+while ((ec = lire1.readLine())!=null) {
+    String[] chaine1 = ec.split(" "); // stocker les strings de ligne dans le tableau
+    //parcour du tableau pour remplir en lisant le fichier par ligne puis colonne de ligne
+    int j = 0;
+    int i = 0;
+        while(j!=colonne){
+        //affectation a matrice le string d'entier du fichier a la position
+        matrice[i][j]=Integer.parseInt(chaine1[j]);
+        System.out.print(matrice[i][j] + " "); // affichage d'elements
+        j = j+1;
+    }
+     System.out.println(); // affichage de matrice en entier
+    i = i+1;
+   // System.out.print(matrice[i][j] + " ");
+    
+    }
+}
 catch(Exception e){
-    System.out.println("an error");
-    // e.getStackTrace();
+    System.out.println("error is : " + e.getMessage());
 }
-    /*// creation du fichier
-    File file = new File(System.getProperty("user.dir") + "\\src\\main\\java\\inf353\\ressources\\" + monFichier + ".txt");
-    // creation de l'objcet file read
-    if(file.exists()){
-        FileReader lire = new FileReader(file);
-    //creation de l'objet bufferedRead
-    BufferedReader bw = new BufferedReader(lire);
-    String textLine;
-    while((textLine = bw.readLine()) != null){
 
-        String[] text = textLine.split(" ");
-        //parcour du tableau string et  colonne
-        int i=0;
-        while (i!=text.length) {
-            colonne = i;
-            i = i + 1;
-        }
-        ligne = ligne +1;
-    }
-    //fermeture de memoir tampon
-    lire.close();
-    //creation de la matrice
-    matrice = new int [ligne][colonne];
-    //creer un object de lecture
-    FileReader lire1 = new FileReader(file);
-    //creer la memoire tampom
-    BufferedReader bw1 = new BufferedReader(lire1);
-    //creer un tableau de mot en lecture des lignes
-    String textLine1;
-    int i=0;
-    while ((textLine1 = bw1.readLine())!= null) {
-        String[] text1 = textLine1.split(" ");
-        //o rcour et initialisation de la matrice
-        int j=0;
-            while (j<text1.length) {
-                matrice[i][j] = Integer.parseInt(text1[j]);
-                j = j+1;
-            }
-            System.out.println();
-            i = i +1;
-        }
-    lire1.close();
-}
-    }
-    catch(IOException e){
-    System.out.println("error");
-    e.getStackTrace();
-}*/
 }
 
 /**
@@ -204,21 +166,27 @@ catch(Exception e){
 
     }
 
-    /**public static void main(String[] args)throws IOException {
-        //MatriceIndexNaive M = new MatriceIndexNaive(3,4);
-        MatriceIndexNaive M = new MatriceIndexNaive("\\src\\main\\java\\inf353\\ressources\\doss.txt");
-        //M.sauver("tet");
-        int i=0;
-        while (i!=M.ndoc) {
-            int j=0;
-            while (j!=M.nterm) {
-                System.out.print(M.val(i,j)+"\t");
-                j=j+1;
-            }
-            System.out.println();
-            i=i+1;
-        }
+    //  public static void main(String[] args)throws IOException {
+    // //     //MatriceIndexNaive M = new MatriceIndexNaive(3,4);
+    //      MatriceIndexNaive M = new MatriceIndexNaive("dosso");
+    // //    // M.sauver("doss");
+        // int i=0;
+        // while (i!=M.ndoc) {
+        //     int j=0;
+        //     while (j!=M.nterm) {
+        //         System.out.print(M.val(i,j)+"\t");
+        //         j=j+1;
+        //     }
+        //     System.out.println();
+        //     i=i+1;
+        // }
+        // while(i!=M.colonne){
+        //     int j = 0;
+        //     while(j!= M.colonne){
+        //         System.out.println(M.val(i, j) + "\t");
+        //         j = j+1;
+        //     }
+        //     i = i+1;
+        // }
 
-    }*/
-
-}
+    }

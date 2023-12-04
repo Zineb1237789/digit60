@@ -3,18 +3,18 @@ import inf353.LecteurDocumentNaif;
 import inf353.DictionnaireNaif;
 import inf353.MatriceIndexNaive;
 public class Indexation{
-    int lig;
-    int col;
+public  int lig;
+public int col;
 
     public Indexation(){
         lig = 0;
         col = 0;
     }
     //creation d'une methode indexer qui prend en parametre doc, saveDic, saveMat
-    public void Indexer(String doc, String saveDic, String saveMat){
+    public void Indexer(String doc, String saveDic, String saveMat)throws IOException{
         //construis des objects de ces classes
         MatriceIndexNaive m = new MatriceIndexNaive(saveMat);
-        LecteurDocumentNaif lecDoc = new LecteurDocumentNaif(doc);//utilisation du deuxieme constructeur de la matrice
+        LecteurDocumentNaif<String> lecDoc = new LecteurDocumentNaif<String>(doc);//utilisation du deuxieme constructeur de la matrice
         DictionnaireNaif dic = new DictionnaireNaif();
         // demarrage
         lecDoc.demarrer();
@@ -30,7 +30,7 @@ public class Indexation{
         else{
             col = dic.nbMots();
         }
-        lig = m.ligne +1; //incrementation dela ligne apres parcoure des colonne
+        lig = m.ligne + 1; //incrementation dela ligne apres parcoure des colonne
         // generons la matrix en utilisant le premier constructeur
         MatriceIndexNaive m1 = new MatriceIndexNaive(lig + 1, col);
         //parcour de la matrice m pour former la matrice m1 en utilisant affecte de matrice
@@ -47,7 +47,7 @@ public class Indexation{
         lecDoc.demarrer();
         while(!lecDoc.finDeSequence()){
             if(dic.contient(lecDoc.elementCourant())){
-                m1.incremente(lig, dic.motIndice(lecDoc.elementCourant()));
+                m1.incremente(lig, dic.indiceMot(lecDoc.elementCourant()));
             }
             lecDoc.avancer();
         }

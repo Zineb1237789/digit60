@@ -1,14 +1,12 @@
 package inf353;
-
-import java.io.InputStreamReader;
+import java.io.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.*;
+import java.io.File;
 
 
-
-public class LecteurDocumentNaif implements AccesSequentielModele1<String> {
+public class LecteurDocumentNaif  {
      public String mot;
     public BufferedReader lect;// serve a rassemblait les lignes dans le tableau
     public int caractere;
@@ -95,7 +93,7 @@ public class LecteurDocumentNaif implements AccesSequentielModele1<String> {
         
 
     }
-    public static void main(String[] args) throws java.io.IOException {
+    /**public static void main(String[] args) throws java.io.IOException {
           LecteurDocumentNaif lecteur = new LecteurDocumentNaif("C:\\Users\\danie\\Downloads\\inf353_projet\\src\\main\\resources\\sample\\sample\\ats94\\ats_19940327.sgml\\ATS.940327.0002");
           int i=0;
           lecteur.demarrer();
@@ -105,7 +103,7 @@ public class LecteurDocumentNaif implements AccesSequentielModele1<String> {
                 lecteur.avancer();
         }
 
-    }
+    }*/
    
 
 }
