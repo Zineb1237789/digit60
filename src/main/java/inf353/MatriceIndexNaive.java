@@ -139,8 +139,10 @@ catch(Exception e){
      * @return       le nombre d'occurences du terme dans le document
      */
     public int val(int ndoc, int nterm){
-
-        return matrice[ndoc][nterm]; //nombre d'occurence du terme dans le document
+        if ((0<=ndoc && ndoc<this.ndoc) && (0<=nterm && nterm<this.nterm) ) {
+            return matrice[ndoc][nterm]; //nombre d'occurence du terme dans le document
+        }
+        return -1;
     }
 
     /**
