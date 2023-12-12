@@ -1,14 +1,13 @@
 package inf353;
 
-import java.io.InputStreamReader;
 import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.*;
+import java.io.InputStreamReader;
 
 
 
-public class LecteurDocumentNaif  {
+public class LecteurDocumentNaif<T>  {
     public String mot;
     public BufferedReader lect;
     public int caractere;
@@ -92,17 +91,16 @@ public class LecteurDocumentNaif  {
     }
 
     
-    public static void main(String[] args) throws java.io.IOException {
-          LecteurDocumentNaif lecteur = new LecteurDocumentNaif("C:\\Users\\danie\\Downloads\\inf353_projet\\digit60\\src\\main\\java\\inf353\\ressources\\sample\\sample\\lemonde94\\19940111\\LEMONDE94-001098-19940111");
-        
-          lecteur.demarrer();
-            while (!lecteur.finDeSequence()) {
-                System.out.print(" "+lecteur.elementCourant());
+    // public static void main(String[] args) throws java.io.IOException {
+    //       LecteurDocumentNaif lecteur = new LecteurDocumentNaif(System.getProperty("user.dir") + "\\src\\main\\java\\inf353\\ressources\\LEMONDE94-003500-19940228-utf8");
+    //       lecteur.demarrer();
+    //         while (!lecteur.finDeSequence()) {
+    //             System.out.print(" "+lecteur.elementCourant());
                 
-                lecteur.avancer();
-        }
+    //             lecteur.avancer();
+    //     }
 
-    }
-   
+    // }
+
 
 }

@@ -38,14 +38,14 @@ public class MatriceIndexNaive implements MatriceIndex {
 public int ligne;
 public int colonne;
 public MatriceIndexNaive(String monFichier) throws IOException{
-    ligne = 0;
-    colonne=0;
+    // ligne = 0;
+    // colonne=0;
 try{
     //declaration des variables
     ligne = 0;
     colonne = 0;
     // construction du fichier a partir du fichier source
-    File file = new File(System.getProperty("user.dir") + "\\src\\main\\java\\inf353\\ressources\\" + monFichier+ ".txt");
+    File file = new File(monFichier);
     // contruction de la memoir tampon et du lecteur de fichier pour recuperer les dimension
     BufferedReader lire = new BufferedReader(new FileReader(file));
     //creation de memoir stocker les chaine de lignes
@@ -62,13 +62,14 @@ try{
         ligne = ligne +1; // incrementation de ligne
         
     }
+    lire.close();
     // a la sortie on obtient ligne, colonne teste effectuer
-    //System.out.println(ligne);
-   // System.out.println(colonne);
+   // System.out.println(ligne);
+   //System.out.println(colonne);
    //remplissage de la matrice
    //construction de la matrice avec les informations ligne et colonne
 matrice = new int[ligne][colonne];
-//memoire tampon pour une noveelle lecture du fichier en remplissant la matrice
+//memoire tampon pour une nouvelle lecture du fichier en remplissant la matrice
 BufferedReader lire1 = new BufferedReader(new FileReader(file));
 String ec;// string pour stocker la ligne
 while ((ec = lire1.readLine())!=null) {
@@ -87,6 +88,7 @@ while ((ec = lire1.readLine())!=null) {
    // System.out.print(matrice[i][j] + " ");
     
     }
+    lire1.close();
 }
 catch(Exception e){
     System.out.println("error is : " + e.getMessage());
@@ -104,11 +106,10 @@ catch(Exception e){
 //utilisation d'exception pour creer le fichier et ecrire
     try{
          // creation du fichier nomDeFichier  suivant le chemin
-        File file = new  File(System.getProperty("user.dir") + "\\src\\main\\java\\inf353\\ressources\\" + nomDeFichier + ".txt");
+        File file = new  File( nomDeFichier );
         // verifier si le fichier existe ou non
-        if(file.createNewFile()){
-            //creer l'ecriveur dans le fichier
-            FileWriter writer = new FileWriter(System.getProperty("user.dir") + "\\src\\main\\java\\inf353\\ressources\\" + nomDeFichier + ".txt");
+        if(file.exists()){
+            FileWriter writer = new FileWriter(file);
             // reserver la memoire
            // BufferedWriter memo = new BufferedWriter(writer);
             // parcpour du document pour ecrire
@@ -121,16 +122,33 @@ catch(Exception e){
             }
             writer.close();
             System.out.println(System.getProperty("user.dir")+ "\\src\\main\\java\\inf353\\ressources\\");
+
         }
         else{
-            System.out.println("File already exists.");
+            //System.out.println("File already exists.");
+            file.createNewFile();
+            //creer l'ecriveur dans le fichier
+            FileWriter writer = new FileWriter( file /* ".txt"*/ );
+            // reserver la memoire
+           // BufferedWriter memo = new BufferedWriter(writer);
+            // parcpour du document pour ecrire
+            for(int doc = 0; doc<this.ndoc; doc++){
+                //parcour les indices de terme
+                for(int term = 0; term< this.nterm; term++){
+                    writer.write(matrice[doc][term] + " ");
+                }
+                writer.write("\n");// a la ligne apres le parcour du premier document
+            }
+            writer.close();
+            System.out.println(System.getProperty("user.dir")+ "\\src\\main\\java\\inf353\\ressources\\");
+        }
+        }
+        catch(IOException e){
+        System.out.println(e.getMessage());
+        
         }
     }
-    catch(IOException e){
-        System.out.println("An error occurred.");
-        e.getStackTrace();
-        }
-}
+    
 
     /**
      * retourne le nombre d'occurences du terme numéro nterm dans le document numéro ndoc.
@@ -139,10 +157,8 @@ catch(Exception e){
      * @return       le nombre d'occurences du terme dans le document
      */
     public int val(int ndoc, int nterm){
-        if ((0<=ndoc && ndoc<this.ndoc) && (0<=nterm && nterm<this.nterm) ) {
-            return matrice[ndoc][nterm]; //nombre d'occurence du terme dans le document
-        }
-        return -1;
+
+        return matrice[ndoc][nterm]; //nombre d'occurence du terme dans le document
     }
 
     /**
@@ -151,8 +167,11 @@ catch(Exception e){
      * @param  nterm le numéro du terme
      */
     public void incremente(int ndoc, int nterm){
-
-        matrice[ndoc][nterm] = matrice[ndoc][nterm] + 1;
+        
+        //matrice[ndoc][nterm] = val(ndoc, nterm) + 1;
+        if (ndoc<ligne && nterm<colonne) {
+            matrice[ndoc][nterm] = val(ndoc, nterm) + 1;
+        }
 
     }
 
@@ -168,10 +187,10 @@ catch(Exception e){
 
     }
 
-    //  public static void main(String[] args)throws IOException {
-    // //     //MatriceIndexNaive M = new MatriceIndexNaive(3,4);
-    //      MatriceIndexNaive M = new MatriceIndexNaive("dosso");
-    // //    // M.sauver("doss");
+   // public static void main(String[] args)throws IOException {
+    // // // //     //MatriceIndexNaive M = new MatriceIndexNaive(3,4);
+    //MatriceIndexNaive M = new MatriceIndexNaive("dosso.txt");
+    // M.sauver("doss");
         // int i=0;
         // while (i!=M.ndoc) {
         //     int j=0;
@@ -189,6 +208,6 @@ catch(Exception e){
         //         j = j+1;
         //     }
         //     i = i+1;
-        // }
+      //}
 
     }

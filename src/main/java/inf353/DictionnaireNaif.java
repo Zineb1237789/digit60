@@ -2,8 +2,8 @@ package inf353;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-public class DictionnaireNaif {
-    public static int N = 100;
+public class DictionnaireNaif implements Dictionnaire{
+    public static int N = 100000;
     public static char[] t;
     public int l;
 
@@ -153,7 +153,7 @@ public int indiceMot(String m){
     public void sauver(String monFichier) throws IOException{
     int i =0;
     try{
-        File file = new File(System.getProperty("user.dir")+ "\\src\\main\\java\\inf353\\ressources\\ " + monFichier+ ".txt");
+        File file = new File( monFichier);
         if(file.createNewFile()){
             FileWriter ecrire = new FileWriter(file);
             while (i!=nbMots()) {
@@ -165,8 +165,7 @@ public int indiceMot(String m){
         }
     }
     catch(IOException e){
-        System.out.println("an error");
-        e.getStackTrace();
+        System.out.println(e.getMessage());
     }
     }
 

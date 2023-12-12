@@ -58,7 +58,7 @@ public interface Dictionnaire {
      * @param p le préfixe recherché
      * @return
      */
-    public boolean contientPrefixe(String p);
+    //public boolean contientPrefixe(String p);
 
     /**
      * renvoie la chaîne de caractères s telle que
@@ -69,6 +69,6 @@ public interface Dictionnaire {
      * @param mot
      * @return
      */
-    public String plusLongPrefixeDe(String mot);
+    //public String plusLongPrefixeDe(String mot);
 
 }
