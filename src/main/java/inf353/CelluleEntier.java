@@ -7,7 +7,7 @@ public class CelluleEntier {
      */
     public int indice;
     public int occurence;
-
+    public float pertinence;
     public CelluleEntier suiv;
 
     /**
@@ -40,6 +40,10 @@ public class CelluleEntier {
         this.occurence = occurence;
         this.suiv = suiv;
     }
-
+     public CelluleEntier(int indice, float pertinence, CelluleEntier suiv) {
+        this.indice = indice;
+        this.pertinence = pertinence;
+        this.suiv = suiv;
+    }
     
 }
