@@ -8,7 +8,7 @@ public class CelluleEntier {
      */
     public int indice;
     public int occurence;
-
+    public float pertinence;
     public CelluleEntier suiv;
 
     /**
