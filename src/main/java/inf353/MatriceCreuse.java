@@ -1,13 +1,5 @@
 package inf353;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
+import java.io.*;
 import inf353.CelluleEntier;
 
 public class MatriceCreuse implements MatriceIndex {
@@ -167,23 +159,4 @@ public class MatriceCreuse implements MatriceIndex {
         }
         return nombre;
     }
-
-    // public static void main(String[] args) throws IOException {
-    //     MatriceCreuse matrice = new MatriceCreuse();
-    //     matrice.affecte(0, 5, 7);
-    //     matrice.incremente(0, 0);
-    //     matrice.affecte(4, 4, 4);
-    //     matrice.affecte(4, 4, 4);
-    //     matrice.affecte(4, 8, 4);
-    //     matrice.affecte(7, 8, 4);
-    //     System.out.println(matrice.val(4, 5));
-    //     System.out.println(matrice.val(0, 5));
-    //     System.out.println(matrice.val(0, 0));
-    //     matrice.incremente(4, 10);
-    //     matrice.sauver("dos");
-    //     MatriceCreuse mat = new MatriceCreuse("dos");
-    //     mat.sauver("dosbis");
-
-    // }
-
 }
