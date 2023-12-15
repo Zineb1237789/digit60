@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class Indexation {
+public int attribut;
 
     //sauvons tous les fichers dans une liste par leurs noms
     public void sauverFichier(String nomDeFichier,File fichier) throws FileNotFoundException {
@@ -68,10 +69,11 @@ public class Indexation {
         File[] documents; // definir une list( tableau) qui va stocker les fichier contenu dans dossier
         documents=parcourirDossier(fichier);
         // Vérifiez si la liste n'est pas nulle
-        DictionnaireNaif dict = new DictionnaireNaif();
+        //DictionnaireNaif dict = new DictionnaireNaif();
+        DictionnaireH dict = new DictionnaireH();
         //utilisation du premier constructeur de la matrice (taile documentts et taille dictioonaire(nbmot))
-        MatriceIndexNaive matrice = new MatriceIndexNaive(documents.length, dict.N);
-        MatriceCreuse matcreux = new MatriceCreuse();
+       // MatriceIndexNaive matrice = new MatriceIndexNaive(documents.length, dict.N);
+        MatriceCreuse matrice = new MatriceCreuse();
         int i = 0;
         //porcourons les documents
         while (i != documents.length) {
@@ -85,23 +87,31 @@ public class Indexation {
                 ////System.out.println(l.elementCourant() + "----------------------------------------");
                 if (!dict.contient(lect.elementCourant())) {
                     dict.ajouterMot(lect.elementCourant());
+                    attribut = attribut +1;
                 }
                 matrice.incremente(i, dict.indiceMot(lect.elementCourant())); //incrementation de la matrice
                 lect.avancer();
             }
             i = i + 1; // document suivant
         }
-
+        //matcreux.sauver(fichierDossier + "/matricreuse.txt");
         matrice.sauver(fichierDossier + "/matriceIndexee.txt"); //sauver matrice dans le fichier qui sera dans le repertoire
         dict.sauver(fichierDossier + "/dictionnaire.txt"); //sauver matrice dans le fichier qui sera dans le repertoire
+
     }
+    public int nbMots(){
+        return attribut;
+        }
     
 
-    // public static void main(String[] args) throws IOException {
-    //     Indexation I = new Indexation();
+    public static void main(String[] args) throws IOException {
+        Indexation I = new Indexation();
 
-    //     I.Indexer("C:\\Users\\dosso\\Desktop\\353_projet\\Nouveau dossier");
-    // }
+        I.Indexer("C:\\Users\\dosso\\Desktop\\353_projet\\french");
+        System.out.println(I.nbMots());
+        
+        
+    }
 
     // public static void main(String[] args)throws IOException {
     //     Indexation I =new Indexation();

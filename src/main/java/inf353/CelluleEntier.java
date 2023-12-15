@@ -1,5 +1,4 @@
 package inf353;
-import java.io.*;
 
 public class CelluleEntier {
 
@@ -8,7 +7,7 @@ public class CelluleEntier {
      */
     public int indice;
     public int occurence;
-    public float pertinence;
+
     public CelluleEntier suiv;
 
     /**
@@ -23,7 +22,7 @@ public class CelluleEntier {
      */
     public CelluleEntier(int indice,int occurence) {
         this.indice = indice;
-        this.occurence = occurence; 
+        this.occurence = occurence;
     }
 
     /**
@@ -39,11 +38,6 @@ public class CelluleEntier {
     public CelluleEntier(int indice, int occurence, CelluleEntier suiv) {
         this.indice = indice;
         this.occurence = occurence;
-        this.suiv = suiv;
-    }
-      public CelluleEntier(int indice, float pertinence, CelluleEntier suiv) {
-        this.indice = indice;
-        this.pertinence = pertinence;
         this.suiv = suiv;
     }
 

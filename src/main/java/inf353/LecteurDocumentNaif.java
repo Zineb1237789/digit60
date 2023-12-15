@@ -83,11 +83,23 @@ public class LecteurDocumentNaif<T>  {
         return mot;
     }
 
-  
+    public boolean estAlphanumerique(char ch){
+        return (ch>47 && ch<58) || (ch>64 && ch<91) || (ch>96 && ch<123);
+        // return (ch>47 && ch<58) || (ch>64 && ch<91) || (ch>96 && ch<122) || (ch>191 && ch<220) || (ch>223 && ch<252);
+    }
+    public char minuscule(char ch){
+        // if((ch>64 && ch<91)|| (ch>191 && ch<220)){
+        if((ch>64 && ch<91)){
+            return (char) (ch + 32);
+        }else{
+            return (char) ch;
+        }
+    }
 
-  public boolean estSeparateur(char c) {
+public boolean estSeparateur(char c) {
         return (c == ' ' || c == '.' || c == '!' || c == ';' || c == '\'' || c == ':' || c == '?' || c == ','
                 || c == '"' || c == '/' || c == ')' || c == '(' || c == '[' || c == ']' || c == '{' || c == '}'|| c=='\n'||c=='_'||c=='-');
+                
     }
 
     

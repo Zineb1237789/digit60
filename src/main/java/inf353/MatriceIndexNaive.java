@@ -187,4 +187,27 @@ catch(Exception e){
 
     }
 
+   // public static void main(String[] args)throws IOException {
+    // // // //     //MatriceIndexNaive M = new MatriceIndexNaive(3,4);
+    //MatriceIndexNaive M = new MatriceIndexNaive("dosso.txt");
+    // M.sauver("doss");
+        // int i=0;
+        // while (i!=M.ndoc) {
+        //     int j=0;
+        //     while (j!=M.nterm) {
+        //         System.out.print(M.val(i,j)+"\t");
+        //         j=j+1;
+        //     }
+        //     System.out.println();
+        //     i=i+1;
+        // }
+        // while(i!=M.colonne){
+        //     int j = 0;
+        //     while(j!= M.colonne){
+        //         System.out.println(M.val(i, j) + "\t");
+        //         j = j+1;
+        //     }
+        //     i = i+1;
+      //}
+
     }

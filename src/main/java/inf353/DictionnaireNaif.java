@@ -3,7 +3,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 public class DictionnaireNaif implements Dictionnaire{
-    public static int N = 100000;
+    public static int N = 5000000;
     public static char[] t;
     public int l;
 
@@ -132,24 +132,24 @@ public int indiceMot(String m){
         return n;
     }
 
-    public boolean contientPrefixe(String prefixe) {
+    // public boolean contientPrefixe(String prefixe) {
 
-        int i = 0;
-        while (i < N * 40) {
-            int k = i;
-            int j = 0;
-            while (j < prefixe.length() && t[k] == prefixe.charAt(j)) {
-                k = k + 1;
-                j = j + 1;
-            }
-            if (j == prefixe.length()) {
-                return true;
-            } else {
-                i = i + 40;
-            }
-        }
-        return false;
-    }
+    //     int i = 0;
+    //     while (i < N * 40) {
+    //         int k = i;
+    //         int j = 0;
+    //         while (j < prefixe.length() && t[k] == prefixe.charAt(j)) {
+    //             k = k + 1;
+    //             j = j + 1;
+    //         }
+    //         if (j == prefixe.length()) {
+    //             return true;
+    //         } else {
+    //             i = i + 40;
+    //         }
+    //     }
+    //     return false;
+    // }
     public void sauver(String monFichier) throws IOException{
     int i =0;
     try{
