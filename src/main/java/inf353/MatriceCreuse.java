@@ -6,7 +6,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import inf353.*;
 public class MatriceCreuse implements MatriceIndex {
     /**
      * Sauvegarde de la matrice d'occurence dans le fichier nomDeFichier. Le format est libre,
