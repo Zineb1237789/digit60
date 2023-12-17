@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 
-public class LecteurDocumentNaif<T>  {
+public class LecteurDocumentNaif{
     public String mot;
     public BufferedReader lect;
     public int caractere;
