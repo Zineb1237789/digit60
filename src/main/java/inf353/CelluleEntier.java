@@ -1,5 +1,4 @@
 package inf353;
-import inf353.*;
 public class CelluleEntier {
 
     /**
