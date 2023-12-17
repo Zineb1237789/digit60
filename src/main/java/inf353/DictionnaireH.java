@@ -1,5 +1,5 @@
 package inf353;
-
+import inf353.*;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;

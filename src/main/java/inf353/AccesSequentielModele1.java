@@ -1,5 +1,5 @@
 package inf353;
-
+import inf353.*;
 /**
  * Interface générique d'un accès séquenciel de modèle 1 d'élemnts de type T
  */
