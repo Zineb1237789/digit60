@@ -1,6 +1,5 @@
 package inf353;
 import java.lang.Math;
-import inf353.*;
 
 public class recherche {
     public int nbDoc = 0;
