@@ -1,28 +1,56 @@
-/*
 package inf353;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.lang.Math;
 import inf353.*;
 
 public class recherche {
-    public CelluleEntier tete;
-    MatriceCreuse M;
-    DictionnaireH H;
-    public String[] t = new String[100];
-    public recherche() throws IOException{
- try{
-      M = new MatriceCreuse("D:\\353_projet\\french\\matriceIndexee.txt");
-    H = new DictionnaireH("D:\\353_projet\\french\\dictionnaire.txt");
+    public CelluleEntier tete = null;
+    public MatriceCreuse M;
+    public DictionnaireH H, C;
+    public String[] t = new String[50000000];//on peut avoir des requetes avec pleins de mots?
+    public java.util.List<String> liste = new java.util.ArrayList<>();
+    // public float[] tabPertinence;
 
-   }
-   catch(IOException e){
-    System.out.println(e.getMessage());
+    public recherche() throws IOException {
+        try {
+            M = new MatriceCreuse("C:\\353_projet\\french\\matriceIndexee.txt");
+            H = new DictionnaireH("C:\\353_projet\\french\\dictionnaire.txt");
 
-   }
+        } catch (IOException e) {
+
+            System.out.println(e.getMessage());
+        }
     }
-    
-  
-    
+
+    // remplissage du tableau qui contient les noms des fichiers
+    public void rempliTabNomsFich() throws IOException {
+
+        try (FileReader fichier = new FileReader("C:\\353_projet\\french\\listeDocuments.txt");
+                BufferedReader bw = new BufferedReader(fichier)) {
+
+            // Lire la première ligne du fichier
+            String ligne = bw.readLine();
+
+            // Vérifier si la ligne n'est pas nulle (fin du fichier)
+            while (ligne != null) {
+                // Diviser la ligne en mots en utilisant l'espace comme délimiteur
+                String[] mots = ligne.split(" ");
+
+                // Ajouter chaque mot à la liste
+                for (String mot : mots) {
+                    liste.add(mot);
+                }
+
+                // Lire la ligne suivante
+                ligne = bw.readLine();
+            }
+
+        }
+    }
+
     public void lireRequete(String cheminFichier) throws IOException {
         // Utiliser le lecteur de document naif
         LecteurDocumentNaif<String> lecteur = new LecteurDocumentNaif<String>(cheminFichier);
@@ -35,242 +63,123 @@ public class recherche {
         while (!lecteur.finDeSequence()) {
             String mot = lecteur.elementCourant();
             t[i] = mot;
+            // System.out.println(t[i]);
             i = i + 1;
             lecteur.avancer();
         }
 
     }
 
-    public void calculPerti()
-    {
-     int i=0;
-     int j=0;
-     int nd=0;
-     int nt=0;
-     float somme=0;
-     int indice;
-      CelluleEntier cc = tete;
-     CelluleEntier prec = null;
-     while(i!=t.length)//parcours du tableau de la requete
-     {
-
-        System.out.println(this.H);
-        System.out.println(t[i]);
-       if(H.contient(t[i]))
-       {indice=H.indiceMot(t[i]);
-        //parcours de la matrice
-       while(nd!=M.nbdoc)//parcours des documents
-       {
-         nt=0;
-        while(nt!=M.nbCellule(nd))//parcours de termes dans chaque document
-        {
-          if(indice==M.valIndice(nd, nt))
-          somme=somme+M.val(nd,nt);//calcul de la pertinence
-          nt++;
-        }
-          while (cc != null) 
-          {
-             prec = cc;
-             cc = cc.suiv;
-             if (prec == null)
-                 tete = new CelluleEntier(i, somme, tete);
-             else {
-                 prec.suiv = new CelluleEntier(i, somme, prec.suiv);
-             }
-
-         }
-         somme=0;
-         nd++;
-       }
-       
-     }
-     i++;
-    }
-    }
-    public void AffichagePerti() {
-        // bubble sort
-        // d'abord on va trier les cellules contenant la pertinence de chacun des
-        // documents et apres on affichera les 10 premiers documents les plus pertinents
-        if (tete == null) {
-            System.out.println("votre liste chainee est vide!!");
-        } else {
-            CelluleEntier list;
-            list = tete;
-            CelluleEntier change = new CelluleEntier();
-            int x = 0, d = 0;
-            do {
-                list = tete;
-                x = 0;
-                while (list.suiv != null) {
-                    if (list.pertinence < list.suiv.pertinence) {
-                        // first swap
-                        change.pertinence = list.pertinence;
-                        change.indice = list.indice;
-                        // second swap
-                        list.pertinence = list.suiv.pertinence;
-                        list.indice = list.suiv.indice;
-                        // third swap
-                        list.suiv.pertinence = change.pertinence;
-                        list.suiv.indice = change.indice;
-                        x = 1;
-                    }
-                    list = list.suiv;
-
-                }
-            } while (x == 1);
-
-            CelluleEntier tmp = tete;
-            while (tmp != null && d != 10) {
-
-               // System.out.println(lecteurDicoDocs.motIndice(tmp.indice));
-                tmp = tmp.suiv;
-                d = d + 1;
-            }
-
-        }
-    }
- public static void main(String[] args) throws IOException {
-    recherche R=new recherche();
-    R.lireRequete("D:\\353_projet\\inf353-tests\\C091");
-    R.calculPerti();
- }
-}
-*/
-package inf353;
-import java.io.IOException;
-import java.lang.Math;
-import inf353.*;
-
-public class recherche {
-    public CelluleEntier tete;
-    MatriceCreuse M;
-    DictionnaireH H;
-    public String[] t = new String[100];
-    public recherche() throws IOException{
-    try{
-      M = new MatriceCreuse("D:\\353_projet\\french\\matriceIndexee.txt");
-      H = new DictionnaireH("D:\\353_projet\\french\\dictionnaire.txt");
-
-    }
-    catch(IOException e){
-    
-        System.out.println(e.getMessage());
-    }
-    }
-    
-  
-    
-    public void lireRequete(String cheminFichier) throws IOException {
-        // Utiliser le lecteur de document naif
-        LecteurDocumentNaif<String> lecteur = new LecteurDocumentNaif<String>(cheminFichier);
-
-        // Démarrer la lecture
-        lecteur.demarrer();
+    public void calculPerti() {
         int i = 0;
-
-        // Lire les éléments du document et les ajouter au dictionnaire
-        while (!lecteur.finDeSequence()) {
-            String mot = lecteur.elementCourant();
-            t[i] = mot;
-            i = i + 1;
-            lecteur.avancer();
-        }
-
-    }
-
-    public void calculPerti()
-    {
-     int i=0;
-     int j=0;
-     int nd=0;
-     int nt=0;
-     float somme=0;
-     int indice;
-      CelluleEntier cc = tete;
-     CelluleEntier prec = null;
-     while(i!=t.length)//parcours du tableau de la requete
-     {
-
-        //System.out.println(this.H.contient(t[i]));
-       if(this.H.contient(t[i]))
-       {
-
-        indice=H.indiceMot(t[i]);
-
-        //parcours de la matrice
-       while(nd!=M.nbdoc)//parcours des documents
-       {
-         nt=0;
-        while(nt!=M.nbCellule(nd))//parcours de termes dans chaque document
+        int j = 0;
+        int nd = 0;
+        int nt = 0;
+        float somme = 0;
+        int indice;
+        int N = this.M.nbdoc;
+        CelluleEntier cc = tete;
+        CelluleEntier prec = null;
+        while (i != t.length)// parcours du tableau de la requete
         {
-          if(indice==M.valIndice(nd, nt))
-          somme=somme+M.val(nd,nt);//calcul de la pertinence
-          nt++;
-        }
-          while (cc != null) 
-          {
-             prec = cc;
-             cc = cc.suiv;
-             if (prec == null)
-                 tete = new CelluleEntier(i, somme, tete);
-             else {
-                 prec.suiv = new CelluleEntier(i, somme, prec.suiv);
-             }
 
-         }
-         somme=0;
-         nd++;
-       }
-       
-     }
-     i++;
+            // System.out.println(this.H.contient(t[i]));
+            if (this.H.contient(t[i])) {
+
+                indice = this.H.indiceMot(t[i]);
+
+                // parcours de la matrice
+                while (nd != N)// parcours des documents
+                {
+                    nt = 0;
+                    while (nt != this.M.nbCellule(nd))// parcours de termes dans chaque document
+                    {
+                        if (indice == this.M.valIndice(nd, nt))
+                            {
+                                somme = somme + M.val(nd, nt);// calcul de la pertinence
+                            }
+                            //System.out.println(M.val(nd,nt));
+                        nt++;
+                    }
+                    
+                    ajouter(nd, somme);
+                    somme = 0;
+                    nd++;
+
+                }
+
+            }
+            i++;
+        }
     }
-    }
-    public void AffichagePerti() {
-        // bubble sort
-        // d'abord on va trier les cellules contenant la pertinence de chacun des
-        // documents et apres on affichera les 10 premiers documents les plus pertinents
+
+    public void ajouter(int indice, float pertinence) {
+        CelluleEntier p = new CelluleEntier(indice, pertinence);
+        CelluleEntier l = tete;
         if (tete == null) {
-            System.out.println("votre liste chainee est vide!!");
+            tete = p;
         } else {
-            CelluleEntier list;
-            list = tete;
+            while (l.suiv != null) {
+                l = l.suiv;
+            }
+            l.suiv = p;
+        }
+
+    }
+
+    public void display() {
+        CelluleEntier tmp = tete;
+        while (tmp != null) {
+            System.out.println("la pertinence du document numero: " + tmp.indice + "est: " + tmp.pertinence);
+            tmp = tmp.suiv;
+        }
+    }
+
+    public void triEtAffichagePerti() {// dans cette methode on va trier le tableau de partinence et afficher
+        int d = 0;
+        if (tete == null) {
+            System.out.println("the linked list is empty.");
+        } else {
+            CelluleEntier tmp = tete;
             CelluleEntier change = new CelluleEntier();
-            int x = 0, d = 0;
+            int x = 0;
             do {
-                list = tete;
+                tmp = tete;
                 x = 0;
-                while (list.suiv != null) {
-                    if (list.pertinence < list.suiv.pertinence) {
-                        // first swap
-                        change.pertinence = list.pertinence;
-                        change.indice = list.indice;
+                while (tmp.suiv != null) {
+                    if (tmp.pertinence < tmp.suiv.pertinence) {
+                        change.indice = tmp.indice;
+                        change.pertinence = tmp.pertinence;
                         // second swap
-                        list.pertinence = list.suiv.pertinence;
-                        list.indice = list.suiv.indice;
+                        tmp.indice = tmp.suiv.indice;
+                        tmp.pertinence = tmp.suiv.pertinence;
                         // third swap
-                        list.suiv.pertinence = change.pertinence;
-                        list.suiv.indice = change.indice;
+                        tmp.suiv.indice = change.indice;
+                        tmp.suiv.pertinence = change.pertinence;
                         x = 1;
                     }
-                    list = list.suiv;
-
+                    tmp = tmp.suiv;
                 }
             } while (x == 1);
 
-            CelluleEntier tmp = tete;
-            while (tmp != null && d != 10) {
-
-               // System.out.println(lecteurDicoDocs.motIndice(tmp.indice));
-                tmp = tmp.suiv;
-                d = d + 1;
-            }
-
         }
+        CelluleEntier current = tete;
+        while (current != null && d != 500) {
+            System.out.println(liste.get(current.indice));
+            current = current.suiv;
+            d++;
+        }
+
     }
- public static void main(String[] args) throws IOException {
-    recherche R=new recherche();
-    R.lireRequete("D:\\353_projet\\inf353-tests\\C091");
-    R.calculPerti();
- }
+
+    public static void main(String[] args) throws IOException {
+
+        recherche R = new recherche();
+        R.lireRequete("C:\\353_projet\\french\\zineb.txt");
+        R.rempliTabNomsFich();
+        R.calculPerti();
+        // R.display();
+        R.triEtAffichagePerti();
+        //R.display();
+    }
 }

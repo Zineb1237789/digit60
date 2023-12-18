@@ -24,6 +24,10 @@ public class CelluleEntier {
         this.indice = indice;
         this.occurence = occurence;
     }
+     public CelluleEntier(int indice,float pertinence) {
+        this.indice = indice;
+        this.pertinence = pertinence;
+    }
 
     /**
      * Constructeur à partir d'un suivant (l'élément n'est pas spécifié).
@@ -40,8 +44,8 @@ public class CelluleEntier {
         this.occurence = occurence;
         this.suiv = suiv;
     }
-     public CelluleEntier(int i, float pertinence, CelluleEntier suiv) {
-        this.indice=i;
+     public CelluleEntier(int indice, float pertinence, CelluleEntier suiv) {
+        this.indice=indice;
         this.pertinence = pertinence;
         this.suiv = suiv;
     }

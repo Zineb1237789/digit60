@@ -104,7 +104,7 @@ public int attribut;
     public static void main(String[] args) throws IOException {
         Indexation I = new Indexation();
 
-        I.Indexer("D:\\353_projet\\french");
+        I.Indexer("C:\\353_projet\\echantillon_5000");
         System.out.println(I.nbMots());
         
         
