@@ -51,6 +51,15 @@ public class MatriceCreuse implements MatriceIndex {
             e.printStackTrace();
         }
     }
+    public int nbCellule(int i){
+        CelluleEntier Current=matrice[i];
+        int nb=0;
+        while(Current!=null){
+            nb=nb+1;
+            Current=Current.suiv;
+        }
+        return nb;
+    }
 
 
     
