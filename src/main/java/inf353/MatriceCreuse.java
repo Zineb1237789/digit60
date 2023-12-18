@@ -103,6 +103,20 @@ public class MatriceCreuse implements MatriceIndex {
         }
     }
 
+    public int valIndice(int ndoc, int i) {
+        tete = matrice[ndoc];
+        CelluleEntier cc = tete;
+        while (cc != null && cc.indice != i) {
+            cc = cc.suiv;
+
+        }
+        if (cc == null) {
+            return 0;
+        } else {
+            return cc.indice;
+        }
+    }
+
     /**
      * Ajoute 1 au nombre d'occurences du terme numéro nterm dans le document numéro ndoc.
      * @param  ndoc  le numéro du document
