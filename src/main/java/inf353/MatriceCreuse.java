@@ -187,8 +187,9 @@ public class MatriceCreuse implements MatriceIndex {
         return nombre;
     }
 
-    // public static void main(String[] args) throws IOException {
-    //     MatriceCreuse matrice = new MatriceCreuse();
+     public static void main(String[] args) throws IOException {
+          MatriceCreuse matrice1 = new MatriceCreuse("D:\\353_projet\\french\\matriceIndexee.txt");
+          matrice1.sauver("D:\\353_projet\\french\\matriceIndexee2.txt");
     //     matrice.affecte(0, 5, 7);
     //     matrice.incremente(0, 0);
     //     matrice.affecte(4, 4, 4);
@@ -196,13 +197,13 @@ public class MatriceCreuse implements MatriceIndex {
     //     matrice.affecte(4, 8, 4);
     //     matrice.affecte(7, 8, 4);
     //     System.out.println(matrice.val(4, 5));
-    //     System.out.println(matrice.val(0, 5));
+    //     System.out.println(matrice.val(0, 5)); 
     //     System.out.println(matrice.val(0, 0));
     //     matrice.incremente(4, 10);
     //     matrice.sauver("dos");
     //     MatriceCreuse mat = new MatriceCreuse("dos");
     //     mat.sauver("dosbis");
 
-    // }
+     }
 
 }

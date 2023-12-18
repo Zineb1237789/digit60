@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import inf353.LecteurDocumentNaif;
+import java.lang.Math;
 
 public class DictionnaireH implements Dictionnaire{
     public int l;
@@ -70,22 +71,57 @@ public class DictionnaireH implements Dictionnaire{
     public boolean contient(String m) {
         
 
-        int n = (m.hashCode() & Integer.MAX_VALUE) % N;
-        if (t[n] == null) {
-            return false;
-        } else if (t[n].equals(m)) {
+        if (m != null){
+
+            int n = Math.abs(m.hashCode() % this.N);
             
-            return true;
-        } else {
-            while (n != N && t[n]!=null && !t[n].equals(m)) {
-                n = n + 1;
+            if (t[n] == null) {
+                return false;
+            } else if (t[n].equals(m)) {
+                
+                return true;
+            } else {
+                while (n != N -1 && t[n]!=null && !t[n].equals(m)) {
+                    
+                    n = n + 1;
+                }
+                if(n == N - 1){
+                    
+                    
+                    if (t[n]!=null && t[n].equals(m)){
+                        
+                        return true;
+                    }
+                    else if (t[n]!=null && !t[n].equals(m)){
+                        
+                        return false;
+                    }
+                    else{
+                        
+                        return false;
+                    }
+                }
+                else {
+                    
+                    if (t[n]!=null && t[n].equals(m)){
+                        
+                        return true;
+                    }
+                    else{
+                        
+                        return false;
+                    } 
+                }
+                
             }
-            return n != N;
             
         }
+        else{
 
-    }
-
+            return false;
+        }
+        }
+        
     public void sauver(String monFichier) throws IOException{
     int i =0;
     try{

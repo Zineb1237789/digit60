@@ -8,6 +8,7 @@ public class CelluleEntier {
     public int occurence;
     public float pertinence;
     public CelluleEntier suiv;
+    public String mot;
 
     /**
      * Constructeur vide (l'élément et le suivant ne sont pas spécifiés).
@@ -39,10 +40,15 @@ public class CelluleEntier {
         this.occurence = occurence;
         this.suiv = suiv;
     }
-     public CelluleEntier(int indice, float pertinence, CelluleEntier suiv) {
-        this.indice = indice;
+     public CelluleEntier(int i, float pertinence, CelluleEntier suiv) {
+        this.indice=i;
         this.pertinence = pertinence;
         this.suiv = suiv;
+    }
+    public CelluleEntier(String mot, float pertinence) {
+        this.mot=mot;
+        this.pertinence = pertinence;
+        
     }
     
 }
