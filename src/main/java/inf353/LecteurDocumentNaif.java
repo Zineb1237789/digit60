@@ -79,7 +79,7 @@ public class LecteurDocumentNaif<T>{
      * @return
      */
     public String elementCourant() {
-        return mot;
+       return mot;
     }
 
     public boolean estAlphanumerique(char ch){
@@ -102,16 +102,16 @@ public boolean estSeparateur(char c) {
     }
 
     
-    // public static void main(String[] args) throws java.io.IOException {
-    //       LecteurDocumentNaif lecteur = new LecteurDocumentNaif(System.getProperty("user.dir") + "\\src\\main\\java\\inf353\\ressources\\LEMONDE94-003500-19940228-utf8");
-    //       lecteur.demarrer();
-    //         while (!lecteur.finDeSequence()) {
-    //             System.out.print(" "+lecteur.elementCourant());
+    public static void main(String[] args) throws java.io.IOException {
+          LecteurDocumentNaif lecteur = new LecteurDocumentNaif("D:\\353_projet\\corpus\\LEMONDE94-003500-19940228-utf8");
+          lecteur.demarrer();
+            while (!lecteur.finDeSequence()) {
+                System.out.print(" "+lecteur.elementCourant());
                 
-    //             lecteur.avancer();
-    //     }
+                lecteur.avancer();
+        }
 
-    // }
+    }
 
 
 }

@@ -84,10 +84,8 @@ public int attribut;
             lect.demarrer();
             while (!lect.finDeSequence()) {
                 ////System.out.println(l.elementCourant() + "----------------------------------------");
-                if (!dict.contient(lect.elementCourant())) {
                     dict.ajouterMot(lect.elementCourant());
                     attribut = attribut +1;
-                }
                 matrice.incremente(i, dict.indiceMot(lect.elementCourant())); //incrementation de la matrice
                 lect.avancer();
             }
@@ -106,7 +104,7 @@ public int attribut;
     public static void main(String[] args) throws IOException {
         Indexation I = new Indexation();
 
-        I.Indexer("C:\\Users\\dosso\\Desktop\\353_projet\\french");
+        I.Indexer("D:\\353_projet\\french");
         System.out.println(I.nbMots());
         
         
