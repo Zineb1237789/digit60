@@ -3,16 +3,23 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import inf353.LecteurDocumentNaif;
 
 public class DictionnaireH implements Dictionnaire{
     public int l;
     public int N = 5000000;
     public String[] t;
+    public LecteurDocumentNaif lect;
 
-    public DictionnaireH(int n) {
-        this.N = n;
-        t = new String[n];
+    public DictionnaireH(String chemin) throws IOException {
         l = 0;
+        t = new String[N];
+        lect = new LecteurDocumentNaif(chemin);
+        lect.demarrer();
+        while(!lect.finDeSequence()){
+            ajouterMot(lect.elementCourant());
+            lect.avancer();
+        }
     }
     public DictionnaireH(){
         t = new String[N];
@@ -101,10 +108,11 @@ public class DictionnaireH implements Dictionnaire{
     catch(IOException e){
         System.out.println(e.getMessage());
     }
+}
 
-    // public static void main(String[] args) {
-    //     DictionnaireH hh = new DictionnaireH();
-    //     hh.ajouterMot("hjfj");
+    public static void main(String[] args) throws IOException{
+        DictionnaireH hh = new DictionnaireH("D:\\353_projet\\french\\dictionnaire.txt");
+        System.out.println(hh.indiceMot("le"));
     //     hh.ajouterMot("hjfj");
     //     hh.ajouterMot("hjfj");
     //     hh.ajouterMot("hjfjuefuezugfezfuef");
@@ -116,6 +124,6 @@ public class DictionnaireH implements Dictionnaire{
     //     System.out.println(hh.nbMots());
     //     System.out.println(hh.indiceMot("hjfj"));
     //     System.out.println(hh.motIndice(hh.indiceMot("hjfj")));
-    // }
-}
+    }
+
 }
