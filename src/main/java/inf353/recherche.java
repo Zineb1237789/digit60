@@ -10,7 +10,7 @@ public class recherche {
     public CelluleEntier tete = null;
     public MatriceCreuse M;
     public DictionnaireH H, C;
-    public String[] t = new String[50000000];// on peut avoir des requetes avec pleins de mots?
+    public String[] t = new String[50000000];//on peut avoir des requetes avec pleins de mots?
     public java.util.List<String> liste = new java.util.ArrayList<>();
     // public float[] tabPertinence;
 
