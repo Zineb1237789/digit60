@@ -69,97 +69,62 @@ public class DictionnaireH implements Dictionnaire{
     }
 
     public boolean contient(String m) {
-        
-
-        if (m != null){
-
-            int n = Math.abs(m.hashCode() % this.N);
-            
+        if (m != null) {
+            int n = (m.hashCode() & Integer.MAX_VALUE) % N;
             if (t[n] == null) {
                 return false;
             } else if (t[n].equals(m)) {
-                
+
                 return true;
             } else {
-                while (n != N -1 && t[n]!=null && !t[n].equals(m)) {
-                    
+                while (n != N && t[n] != null && !t[n].equals(m)) {
                     n = n + 1;
                 }
-                if(n == N - 1){
-                    
-                    
-                    if (t[n]!=null && t[n].equals(m)){
-                        
-                        return true;
-                    }
-                    else if (t[n]!=null && !t[n].equals(m)){
-                        
-                        return false;
-                    }
-                    else{
-                        
-                        return false;
-                    }
-                }
-                else {
-                    
-                    if (t[n]!=null && t[n].equals(m)){
-                        
-                        return true;
-                    }
-                    else{
-                        
-                        return false;
-                    } 
-                }
-                
-            }
-            
-        }
-        else{
+                return n != N;
 
+            }
+    
+        } else {
             return false;
         }
-        }
+
+    }
         
-    public void sauver(String monFichier) throws IOException{
-    int i =0;
-    try{
-        File file = new File( monFichier);
-        if(file.createNewFile()){
-            FileWriter ecrire = new FileWriter(file);
-            BufferedWriter bw = new BufferedWriter(ecrire);
-            while (i!=nbMots()) {
-                if(t[i] != null){
-                    //bw.write(motIndice(i));
-                    bw.write(motIndice(i) + " ");
+    public void sauver(String monFichier) throws IOException {
+        try {
+            File file = new File(monFichier);
+            if (file.createNewFile()) {
+                FileWriter ecrire = new FileWriter(file);
+                BufferedWriter bw = new BufferedWriter(ecrire);
+                for (int i = 0; i < N; i++) {
+                    if (t[i] != null) {
+                        bw.write(motIndice(i) + " ");
+                    }
                 }
-                //bw.write(motIndice(i) + " ");
-                i =  i+1;
+                bw.write("\n");
+                bw.close();
             }
-            ecrire.write("\n");
-            ecrire.close();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
         }
     }
-    catch(IOException e){
-        System.out.println(e.getMessage());
-    }
+
+public static void main(String[] args)throws IOException {
+    DictionnaireH hh = new DictionnaireH();
+    hh.ajouterMot("hjfj");
+    hh.ajouterMot("hjfj");
+    hh.ajouterMot("hjfj");
+    hh.ajouterMot("hjfjuefuezugfezfuef");
+    hh.ajouterMot("hjfjherfhehhe");
+    hh.ajouterMot("hjfeefef");
+    hh.sauver("dicto.txt");
+    System.out.println(hh.contient("hjfj"));
+    System.out.println(hh.contient("h"));
+    System.out.println(hh.contient("hjfjuefuezugfezfuef"));
+    System.out.println(hh.nbMots());
+    System.out.println(hh.indiceMot("hjfj"));
+    System.out.println(hh.motIndice(hh.indiceMot("hjfj")));
 }
 
-    public static void main(String[] args) throws IOException{
-        DictionnaireH hh = new DictionnaireH("D:\\353_projet\\french\\dictionnaire.txt");
-        System.out.println(hh.indiceMot("le"));
-    //     hh.ajouterMot("hjfj");
-    //     hh.ajouterMot("hjfj");
-    //     hh.ajouterMot("hjfjuefuezugfezfuef");
-    //     hh.ajouterMot("hjfjherfhehhe");
-    //     hh.ajouterMot("hjfeefef");
-    //     System.out.println(hh.contient("hjfj"));
-    //     System.out.println(hh.contient("h"));
-    //     System.out.println(hh.contient("hjfjuefuezugfezfuef"));
-    //     System.out.println(hh.nbMots());
-    //     System.out.println(hh.indiceMot("hjfj"));
-    //     System.out.println(hh.motIndice(hh.indiceMot("hjfj")));
-    }
-
 }
+
