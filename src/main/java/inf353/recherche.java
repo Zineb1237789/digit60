@@ -10,7 +10,7 @@ public class recherche {
     public CelluleEntier tete = null;
     public MatriceCreuse M;
     public DictionnaireH H, C;
-    public String[] t = new String[50000000];//on peut avoir des requetes avec pleins de mots?
+    public String[] t = new String[50000000];// on peut avoir des requetes avec pleins de mots?
     public java.util.List<String> liste = new java.util.ArrayList<>();
     // public float[] tabPertinence;
 
@@ -94,15 +94,14 @@ public class recherche {
                     nt = 0;
                     while (nt != this.M.nbCellule(nd))// parcours de termes dans chaque document
                     {
-                        if (indice == this.M.valIndice(nd, nt))
-                            {
-                                somme = somme + M.val(nd, nt);// calcul de la pertinence
-                            }
-                            //System.out.println(M.val(nd,nt));
+                        if (indice == this.M.valIndice(nd, nt)) {
+                            somme = somme + M.val(nd, nt);// calcul de la pertinence
+                        }
+                        // System.out.println(M.val(nd,nt));
                         nt++;
                     }
-                    
-                    ajouter(nd, somme);
+                    if (somme != 0)
+                        ajouter(nd, somme);
                     somme = 0;
                     nd++;
 
@@ -136,9 +135,10 @@ public class recherche {
     }
 
     public void triEtAffichagePerti() {// dans cette methode on va trier le tableau de partinence et afficher
+        // bubble sort
         int d = 0;
         if (tete == null) {
-            System.out.println("the linked list is empty.");
+            System.out.println("DESOLE Y A AUCUN FICHIER QUI CONTIENT VOTRE REQUETE");
         } else {
             CelluleEntier tmp = tete;
             CelluleEntier change = new CelluleEntier();
@@ -161,13 +161,12 @@ public class recherche {
                     tmp = tmp.suiv;
                 }
             } while (x == 1);
-
-        }
-        CelluleEntier current = tete;
-        while (current != null && d != 500) {
-            System.out.println(liste.get(current.indice));
-            current = current.suiv;
-            d++;
+            CelluleEntier current = tete;
+            while (current != null && d != 10) {
+                System.out.println(liste.get(current.indice));
+                current = current.suiv;
+                d++;
+            }
         }
 
     }
@@ -180,6 +179,6 @@ public class recherche {
         R.calculPerti();
         // R.display();
         R.triEtAffichagePerti();
-        //R.display();
+        // R.display();
     }
 }
