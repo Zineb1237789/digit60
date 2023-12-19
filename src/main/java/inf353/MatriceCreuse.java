@@ -36,7 +36,7 @@ public class MatriceCreuse implements MatriceIndex {
             while ((ligne = lect.readLine()) != null && nbdocCourant < nbdoc) {
                 String[] cellules = ligne.split(" ");
                 for (String cellule : cellules) {
-                    String[] separe = cellule.split("[()]");
+                    String[] separe = cellule.split(",");
                     if(separe.length >= 2){
                         int occurence = valNombre(separe[1]);
                         int indice = valNombre(separe[0]);
@@ -80,7 +80,7 @@ public class MatriceCreuse implements MatriceIndex {
                 for (int i = 0; i < nbdoc; i++) {
                     CelluleEntier current = matrice[i];
                     while (current != null) {
-                        bWriter.write(current.indice + "(" + current.occurence + ") ");
+                        bWriter.write(current.indice + "," + current.occurence + " ");
                         current = current.suiv;
                     }
                     bWriter.write('\n');
@@ -188,8 +188,8 @@ public class MatriceCreuse implements MatriceIndex {
     }
 
      public static void main(String[] args) throws IOException {
-          MatriceCreuse matrice1 = new MatriceCreuse("D:\\353_projet\\french\\matriceIndexee.txt");
-          matrice1.sauver("D:\\353_projet\\french\\matriceIndexee2.txt");
+          MatriceCreuse matrice1 = new MatriceCreuse("D:\\353_projet\\echantillon_100\\matriceIndexee.txt");
+          matrice1.sauver("D:\\353_projet\\echantillon_100\\matriceIndexee2.txt");
     //     matrice.affecte(0, 5, 7);
     //     matrice.incremente(0, 0);
     //     matrice.affecte(4, 4, 4);
