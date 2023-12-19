@@ -62,6 +62,7 @@ public class MatriceCreuse implements MatriceIndex {
     }
 
 
+
     
     
     
@@ -99,8 +100,8 @@ public class MatriceCreuse implements MatriceIndex {
      * @return       le nombre d'occurences du terme dans le document
      */
     public int val(int ndoc, int i) {
-        tete = matrice[ndoc];
-        CelluleEntier cc = tete;
+        CelluleEntier current = matrice[ndoc];
+        CelluleEntier cc = current;
         while (cc != null && cc.indice != i) {
             cc = cc.suiv;
 
@@ -188,21 +189,11 @@ public class MatriceCreuse implements MatriceIndex {
     }
 
      public static void main(String[] args) throws IOException {
-          MatriceCreuse matrice1 = new MatriceCreuse("D:\\353_projet\\echantillon_100\\matriceIndexee.txt");
-          matrice1.sauver("D:\\353_projet\\echantillon_100\\matriceIndexee2.txt");
-    //     matrice.affecte(0, 5, 7);
-    //     matrice.incremente(0, 0);
-    //     matrice.affecte(4, 4, 4);
-    //     matrice.affecte(4, 4, 4);
-    //     matrice.affecte(4, 8, 4);
-    //     matrice.affecte(7, 8, 4);
-    //     System.out.println(matrice.val(4, 5));
-    //     System.out.println(matrice.val(0, 5)); 
-    //     System.out.println(matrice.val(0, 0));
-    //     matrice.incremente(4, 10);
-    //     matrice.sauver("dos");
-    //     MatriceCreuse mat = new MatriceCreuse("dos");
-    //     mat.sauver("dosbis");
+          MatriceCreuse matrice = new MatriceCreuse("D:\\353_projet\\french\\matriceIndexee.txt");
+             System.out.println(matrice.val(1,23110));
+    
+       
+         
 
      }
 
