@@ -58,8 +58,8 @@ JOURNALE DU GROUPE DIGIT6_0
             4 personnes pour les methodes dont deux methodes par personnes.
         
     b- les diffcultes:
-            *incomprehension du sujet
-            lors de la premiere journee de travail, nous avons pris moins de 30 minutes pour echanger sur le projet voir se repartir les taches sans meme chercher a avoir une comprehension generale du sujet et chacun travailla selon sa propre comprehension qui, lors du rassemblement c'est averé opposer a celle des autres.
+            
+            *incomprehension du sujet: lors de la premiere journee de travail, nous avons pris moins de 30 minutes pour echanger sur le projet voir se repartir les taches sans meme chercher a avoir une comprehension generale du sujet et chacun travailla selon sa propre comprehension qui, lors du rassemblement c'est averé opposer a celle des autres.
 
             * problèmes de collaboration entre membres avec la divergence d'idees
             la divergence des idees bien que chacun ai travailler sur des methodes differentes. Car chacun a voulut que son idee soit adopter meme si celle si n'avait aucune logique pour les autres et dont le porteur d'idee n'arrivait pas a rendre son idee explicite.
