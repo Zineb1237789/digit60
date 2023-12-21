@@ -87,13 +87,89 @@ a- les taches:
         *La realisation du LecteurDocumentNaif qui implemente l'acces sequentielModele1
         *L'adaptation du dictionnaireNaif au programme en creant une methodes save
         *Les tests
+    
+REALISATION DE L'INDEXATION
 
 b-la repartition des taches:
-    *
+les taches furent repartir selon l'avancement du projet,
+
+    *la realisation de l'indexation
+
+    la première journée de travail sur le premier systeme de recherche
+
+        pour pouvoir realiser l'indexation, nous avons commence par realiser les classes intervenantes:
+
+            *Première phase:
+
+                *Daniel et Joran charger de realiser les classes(LecteurDocument)
+                *Siaka chargé de realiser la matriceIndexNaif, et l'adaptation du dictionnaireNaif au programme.
+                *Zineb et Nadjidati chargées de realiser la classe Indexation.
+                *Diarouga Bah chargé de realiser les tests
+
+            *La deuxième phase:
+
+                *Daniel et Joran chargé des classes MatriceCreuse, DictionnaireH et Cellule
+                *Siaka chargé de la reintegration dans l'indexation
+                *Nadjidati et Zineb chargé de continuer la recherche
+                *Bah chargé de faire de nouvel tests pour ces nouvelles classes integrées 
+
+c-les diffcultes:
+    les classes LecteurDocument, matriceIndex et l'adaptation du dictionnaireNaif ont été realiser sans difficultés contrairement a la classe Indexation qui nous a poser des difficultés.
+
+    *les diffcultes techniques:
+        *probleme de compilation de la classe indexation dans un premier temps
+        *dans un second temps, la classe indexation compilais mais les fichiers retourner n'etaient pas convainquants
+        *le temps d'indexation allais jusqu'a plus de 1h30min
+    
+    *difficultés organisationnelles :
+        *quelques problèmes concernant la repartition des taches dont certains ont trouvé que les taches qui leur sont     confiées sont complexes pour eux.
+
+d- Les solutions:
+    *dans un premier temps, nous avons analyse la classe indexation realiser par Zineb et Nadjidati. nous avons échanger entre nous pour voir le niveau général de comprehension,receuillir les idées emis par tout un chacun a fin de pouvoir trouver une entente sur quoi le code etait assez complexe c'est-a-dire,l'on ne pouvais la modifier convenablement, nous devrions reprendre cette classe en s'inspirant de la comprehension generale.Ainsi, Siaka fu chargé de realiser la classe indexation en s'inspirant de la comprehension generale deduite lors de l'echange de compréhension entre membres du groupe. pendant ce temps, Zineb et Nadji ayant une bonne comprehension de la classe recherche ont été charger de reflechir et realiser cette dernière.
+    *Ensuite, nous avons analysé le deuxième problème en se focalisant sur les classes intervenantes. Ainsi, nous avons analysé les classes notament,le LecteurDocument qui ne tenais pas compte des derniers mots,et le dictionnaire qui avec sa fonction contient ne tenais pas contre des répétition donc disfonctionnement de la methode contient() du dictionnaire.nous avons ainsi, corriger le problème du dictionnaire avec Daniel et le Lecteurdocument avec Joran. Siaka c'est charger de les reinstaure dans la classeindexation et le compiler. après compilation le temps de compilation demeurrais inchangé mais le deuxième problème fut régler.tests sur échantillon 100,5000.
+    *nous avons analyser le troisième problème. après les tests sur les echantillons 100, 5000 plus l'echantillons est élevé plus le temps d'execution est considerable.Conséquence,l'on ne pouvais pas indexer le corpus. le problème fu soumis au prof et la solutions a été  de créer une nouvelle matrice(matriceCreuse) associer a un dictionnaireH, qui libere l'espace memoire des reservation d'occurrence zero de la premiere matriceIndexNaif.Ainsi, nous avons chargé Joran et Daniel pour la realisation de ces nouvelles classes visant a utiliser les cellules pour ensuite l'adapter a l'indexation.C'est ainsi, que nous avons peu regler le problème de temps d'excusion qui prend moins de 5min a indexer le corpus plutôt que plus 1h30min avec retour de resultats satisfaisants en ce qui concerne les produits( un fichier dictionnaireH, matriceCreude,listeDocument).
+    *Concernant le problème organisationnel, nous avons echangé entre membres du groupe pour se rappeler les princinpes de fonctionnement de notre groupe et l'objectif du projet, ainsi que se donner des conseil sur l'apprentissage avec le dicton ( c'est en forgent qu'on devient forgeron ).Nous avions egalements encouragé chacun a faire des recherches pour mener a bien la tache qui lui sera confier et a ne pas avoir d'inquiétude car les autres seront là pour l'aider.
+
+le timing, il nous a fallu 3 semaines pour realiser la première partie qui est l'indexation et ces classes intervenantes.
+Cette partie du projet fut une experience enrichissant pour le groupe en connaissance et en collaboration car les membres du groupe devenuent plus proche et collaboratifs.
+
+REALISATION DE LA RECHERCHE
+
+    *diffucultés et solutions
+
+        *Zineb et Nadjidatie chargées de realiser cette classe ont comprirent le principe de la recherche,mais elles eurent des difficultés afin de programmer biens que l'idée etait claire et convaincante.
+        ainsi dès les classes DictionnaireH et MatriceCreuse terminé Joran et Daniel les ont rejoint afin de les aider,
+        ils furent ensuite rejoint par Siaka Dosso une fois son indexation terminé et le groupe decida de se focaliser sur recherhce dans un premier temps afin de finir la 1ere version et qu'elle soit fonctionnelle.
+        *Cepandant, l'inconvénient de travailler à 6 sur un même classe est qu'il y eut une grande divergence des idées, ainsi il y eu une petite embrouille dans le groupe qui a crée une petite fissure, ainsi certaines personnes bossaient sur une
+        classe recherche pendant que certaines personnes bossaient sur une autre, ainsi nous avons perdu du temps et au moment de ne garder qu'une classe recherche une partie du groupe avait l'impression d'avoir travaillé pour rien.
+        Après une discussion orchestré par Siaka Dosso, le groupe a bien parlé et s'est rapidement reconcilié et le travail a pu reprendre dans de bonnes conditions en ne gardant qu'une seule classe recherche. Cette classe effectue la recherche en environ 1 à 3 minutes suivant les requêtes ce qui est un temps qui nous a paru correct et satisfaisant étant donné que nous n'allons pas tester sur des milliers de requêtes.
+
+    *Experience:
+
+        *Répartition des taches :
+
+            *Zineb et Nadjidatie s'occupaient de tester des nouvelles méthodes de calcul
+            *Siaka Dosso améliorait la classe recherche et a installé trec_eval
+            *Joran et Daniel ont programmé le lecteur pour qu'il test seulement les minuscules et ont mis une stop list dans le dictionnaire.
+
+        *tests et resultats:
+
+             *Tout d'abord, nous nous sommes  occupé de renvoyer les résulats de la recherche dans un document bien présenté afin de pouvoir tester notre systeme de rcherhce sur trec eval,
+             nous avond donc testé notre première version et nous avons obtenu les scores suivants :
+
+                *Avec une requête et 500 documents renvoyés : 0.0000
+                *Avec 6 requêtes et 500 documents renvoyés : 0.0001
+
+                Nous avons donc conclu qu'il y avait un problème est que le système devait comporter un bug.
+
+            *Nous avons ensuite testé une 2ème version comportant une stop list, la stop list de google. Nous avons avec 6 requêtes et 500 documents renvoyés par document un score trec eval de 0.0047. Ce résultat est meilleur mais il est très très loin d'être satisfaisant.
+
+            *Nous avons ensuite testé cette même version en rajoutant simplement le fait que le lecteur lise tout en    minuscule. Avec le même test que précedemment nous avons obtenu un résultat de 0.0044, nous avons donc conclu que dans notre cas, le fait de tout mettre en minuscule n'était pas une bonne solution car elle n'augmentait pas le reésultat et même elle le baisse légèrement. Nous avons donc décidé d'abandonner cette idée pour la suite.
+
+            *Notre 3ème test s'est porté sur notre 3ème version de notre projet, cette version crée un dictionnaire ne contenant que les troncatures de tout les mots car nous avons utilisé la fonction stem dans le lecteur de document. Pour les mêmes tests qu'effectué precedemment, nous notons certe une amélioration car nous avons obtenu un résultat de 0.0068 mais étant donné le résultat si faible nous ne pouvons pas être satisfait.
+
+La mise en place du systeme de recherche nous a beaucoup appris notamment la capacité de travailler en équipe, la collaboratrion, la gestion des differents entres membres et surtout l'acquisition de connaissance sur la structuration d'un projet informatique.
 
 
 
 
-
-
-la première journée de l    a semaine bloquer nous avons travailer sur la recherche
