@@ -99,18 +99,9 @@ les taches furent repartir selon l'avancement du projet,
 
         pour pouvoir realiser l'indexation, nous avons commence par realiser les classes intervenantes:
 
-            *Première phase:
-
-                *Daniel et Joran charger de realiser les classes(LecteurDocument)
-                *Siaka chargé de realiser la matriceIndexNaif, et l'adaptation du dictionnaireNaif au programme.
-                *Zineb et Nadjidati chargées de realiser la classe Indexation.
-                *Diarouga Bah chargé de realiser les tests
-
-            *La deuxième phase:
-
-                *Daniel et Joran chargé des classes MatriceCreuse, DictionnaireH et Cellule
-                *Siaka chargé de la reintegration dans l'indexation
-                *Nadjidati et Zineb chargé de continuer la recherche
+                *Daniel et Joran chargé des classes MatriceCreuse, DictionnaireH
+                *Siaka chargé de l'indexation
+                *Nadjidati et Zineb chargé de la recherche
                 *Bah chargé de faire de nouvel tests pour ces nouvelles classes integrées 
 
 c-les diffcultes:
@@ -137,18 +128,16 @@ REALISATION DE LA RECHERCHE
 
     *diffucultés et solutions
 
-        *Zineb et Nadjidatie chargées de realiser cette classe ont comprirent le principe de la recherche,mais elles eurent des difficultés afin de programmer biens que l'idée etait claire et convaincante.
-        ainsi dès les classes DictionnaireH et MatriceCreuse terminé Joran et Daniel les ont rejoint afin de les aider,
-        ils furent ensuite rejoint par Siaka Dosso une fois son indexation terminé et le groupe decida de se focaliser sur recherhce dans un premier temps afin de finir la 1ere version et qu'elle soit fonctionnelle.
-        *Cepandant, l'inconvénient de travailler à 6 sur un même classe est qu'il y eut une grande divergence des idées, ainsi il y eu une petite embrouille dans le groupe qui a crée une petite fissure, ainsi certaines personnes bossaient sur une
-        classe recherche pendant que certaines personnes bossaient sur une autre, ainsi nous avons perdu du temps et au moment de ne garder qu'une classe recherche une partie du groupe avait l'impression d'avoir travaillé pour rien.
-        Après une discussion orchestré par Siaka Dosso, le groupe a bien parlé et s'est rapidement reconcilié et le travail a pu reprendre dans de bonnes conditions en ne gardant qu'une seule classe recherche. Cette classe effectue la recherche en environ 1 à 3 minutes suivant les requêtes ce qui est un temps qui nous a paru correct et satisfaisant étant donné que nous n'allons pas tester sur des milliers de requêtes.
+        *Zineb et Nadjidatie chargées de realiser cette classe ,elles ont pu calculer la pertinence et afficher 
+            les  documents les plus pertinents mais par contre ce n'etait pas assez performamt ca a pris beaucoup  
+               de temps pour se compiler.
+        *Cependant,Isaac travaillait sur une autre version de recherche 
 
     *Experience:
 
         *Répartition des taches :
 
-            *Zineb et Nadjidatie s'occupaient de tester des nouvelles méthodes de calcul
+            *Zineb et Nadjidatie s'occupaient de tester des nouvelles méthodes de calcul et faire le stemming
             *Siaka Dosso améliorait la classe recherche et a installé trec_eval
             *Joran et Daniel ont programmé le lecteur pour qu'il test seulement les minuscules et ont mis une stop list dans le dictionnaire.
 
