@@ -6,27 +6,39 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-
+import java.lang.Math;
 public class Recherches {
     public int somme;
-    public int produit;
+    public float produit;
+    public float pertinence;
+    public float[] zef;
+    public String[] doc;
+    public Recherches()throws IOException{
+        this.zef = new float[87162];
+        FileReader lecture = new FileReader("D:\\353_projet\\french\\listeDocuments.txt");
+        BufferedReader bw = new BufferedReader(lecture);
+    // distinction de separateur en creant un
+        this. doc = bw.readLine().split(" ");
+        bw.close();
+        lecture.close();
+    }
 
     public void recherche(String fichier) throws IOException {
         try {
             // recupertion des fichiers generer par l'indexation
             // recuperation de la matrice generer
             MatriceCreuse matrice = new MatriceCreuse(
-                    "C:\\Users\\dosso\\Desktop\\353_projet\\dossiers\\french\\matriceIndexee.txt");
+                    "D:\\353_projet\\french\\matriceIndexee.txt");
             // recuperation du dictionnaire
-            DictionnaireH dict = new DictionnaireH("C:\\Users\\dosso\\Desktop\\353_projet\\dossiers\\french\\dictionnaire.txt");
+            DictionnaireH dict = new DictionnaireH("D:\\353_projet\\french\\dictionnaire.txt");
 
             // creation d'un fichier de lecture a partir de la liste de fichier generer par
             // l'indexation
-            FileReader lecture = new FileReader(
-                    "C:\\Users\\dosso\\Desktop\\353_projet\\dossiers\\french\\listeDocuments.txt");
-            BufferedReader bw = new BufferedReader(lecture);
+            //FileReader lecture = new FileReader(
+                   // "D:\\353_projet\\french\\listeDocuments.txt");
+            //BufferedReader bw = new BufferedReader(lecture);
             // distinction de separateur en creant un
-            String[] doc = bw.readLine().split(" ");
+            //String[] doc = bw.readLine().split(" ");
             // creation d'un objet de lecteur de document
             LecteurDocumentNaif<String> lect = new LecteurDocumentNaif<String>(fichier);
             // creation d'un tableau de type int qui s'initialise depuis le dict
@@ -43,8 +55,7 @@ public class Recherches {
                 }
                 lect.avancer(); // avancer
             }
-            bw.close();
-            lecture.close();
+            
             // recupereration de la longueur de ref
 
             // calcul de pertinence
@@ -67,55 +78,91 @@ public class Recherches {
         //     }
         // }
        
-        float[] produit = new float[87162];
+        this.zef = new float[87162];
         while(i!=87162){
             
             float somme = 0;
             int j = 0;
             while(j!=dict.nbMots() +1){
                 if(ref.val(0, j)!=0){
-                    somme = somme + (ref.val(0, j) * matrice.val(i, j));
+                    //somme = somme + (ref.val(0, j) * matrice.val(i, j));
+                    //nb d'occurences du mot dans le doc
+                    somme = somme + matrice.val(i, j);
+                    
 					//System.out.println(somme);
                 }
                 j = j + 1;
             }
 				//System.out.println("produits scalaires-" + i +"/"+ produits.length + " " + somme);
-				produit[i] = somme/500;
+               // somme =somme + Math.log(matrice.val(i, j));
+
+				//produit[i] = somme;
+                zef[i] = 1+(float)Math.log(somme);
+                //
                 // System.out.println(produits[i]);
             i = i + 1 ;
         }
+        /*
+        public float[] max(int n){
+            float[] tab=new float[n];
+            float max=0;
+            int l=produit.length;
+            int i=0;
+            int index=0;x;
+            while(i!=n){
+                for(int j=0; j<l;j++){
+                    if(max>produit[j]){
+                        max=produit[j];
+                        index=j;
+                    }
+                    l=l-1;
+
+                }
+                String mindoc = doc[index];
+                doc[index] = doc[i];
+                doc[i] = mindoc;
+                
+                tab[i]=max;
+                i++;
+            }
+
+        }
+        */
 
             // parcour du tableau produit pour le retour de documents
-            for (int j = 0; j < produit.length; j++) {
+            /*for (int j = 0; j < zef.length; j++) {
                 int index = j;
-                for (int k = j + 1; k != produit.length; k++) {
+                for (int k = j + 1; k != zef.length; k++) {
 
-                    if (produit[k] > produit[index]) {
+                    if (zef[k] > zef[index]) {
                         index = k;
                     }
                 }
-                float min = produit[index];
+                float min = p[index];
                 produit[index] = produit[j];
                 produit[j] = min;
                 String mindoc = doc[index];
                 doc[index] = doc[j];
                 doc[j] = mindoc;
+
             }
+            */
 
             int id = 0;
             int indiceReq = 1;
             int cste = 0;
             //int id = 0;
             int col = 0;
-            File file = new File("treceval.txt");
+            File file = new File("treceval130tri2.txt");
+            float[] larg=max(800);
             if(!file.exists()){
                 file.createNewFile();
                 FileWriter ecrire = new FileWriter(file);
                 BufferedWriter bv = new BufferedWriter(ecrire);
-                while (id != 500) {
+                while (id != 800) {
                 //System.out.println(doc[id]);
                 //System.out.println(produit[id]);
-                bv.write(100 + "\t" + cste + "\t" + doc[id] + "\t" + id + "\t" + produit[id] + "\t" + "STANDARD");
+                bv.write(130 + "\t" + cste + "\t" + doc[id] + "\t" + id + "\t" + larg[id] + "\t" + "Version2stoplist");
                 bv.write("\n");
 
                 id = id + 1;
@@ -184,13 +231,40 @@ public class Recherches {
     //         System.out.println(e.getMessage());
     //     }
     //}
+   ;
+    public float[] max(int n){
+        float[] tab=new float[n];
+        float max=0;
+        int l=this.zef.length;
+        int i=0;
+        int index=0;
+        while(i!=n){
+            for(int j=0; j<l;j++){
+                if(max<this.zef[j]){
+                    max=this.zef[j];
+                    index=j;
+                }
+                l=l-1;
+
+            }
+            float min = zef[index];
+            zef[index] = zef[i];
+            zef[i] = min;
+            String mindoc= doc[index];
+            doc[index] = doc[i];
+            doc[i] = mindoc;
+            
+            tab[i]=max;
+            i++;
+        }
+        return tab;
+    }
 
     public static void main(String[] args) throws IOException {
 
         Recherches I = new Recherches();
-        I.recherche(/*"Soulèvement d'Indiens dans le sud du Mexique"*/ "C:\\Users\\dosso\\Desktop\\353_projet\\inf353-tests\\inf353-tests\\C096");
+        I.recherche("D:\\353_projet\\inf353-tests\\C130");
 
     }
 
 }
-
